@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuessInput({addToListOfGuesses}) {
+function GuessInput({isDisabled, addToListOfGuesses}) {
   const [userGuess, setUserGuess] = React.useState('');
 
   function submitGuess(event){
@@ -12,9 +12,9 @@ function GuessInput({addToListOfGuesses}) {
   }
 
   return (
-    <form onSubmit={submitGuess}>
+    <form className="guess-input-wrapper" onSubmit={submitGuess}>
       <label htmlFor='guess-input'></label>
-      <input 
+      {!isDisabled ? ( <input 
         id='guess-input'
         type='text'
         value={userGuess}
@@ -24,7 +24,7 @@ function GuessInput({addToListOfGuesses}) {
           setUserGuess(event.target.value.toUpperCase());
         }}
       >
-      </input>
+      </input>) : <input disabled></input>}
     </form>
   );
 }
